@@ -17,7 +17,7 @@ interface ApiResponse {
     Rapido: {
       data: DataItem[];
     };
-    all_kinds: object; // Replace with a more specific type if known
+    all_kinds: object;  
   };
 }
 
