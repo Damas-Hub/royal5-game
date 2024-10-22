@@ -24,9 +24,7 @@ interface ApiResponse {
 const DataComponent: React.FC<{ title: string }> = ({ title }) => {
   const [apiData, setApiData] = useState<string>("");
 
-  const handleInputChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ): void => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setApiData(event.target.value);
   };
 
@@ -52,41 +50,30 @@ const Royal: React.FC = () => {
   useEffect(() => {
     const fetchTitles = async () => {
       try {
-        const response = await fetch(
-          "http://192.168.1.51/task/apis/twosides.php?lottery_type_id=1"
-        );
+        const response = await fetch("http://192.168.1.51/task/apis/twosides.php?lottery_type_id=1");
         const data: ApiResponse = await response.json();
 
         console.log("Fetched data:", JSON.stringify(data, null, 2));
 
-        if (
-          data[1] &&
-          data[1].Rapido &&
-          data[1].Rapido.data &&
-          Array.isArray(data[1].Rapido.data)
-        ) {
-          const labelsArray = data[1].Rapido.data;
-          const extractedTitles = labelsArray.map((item) => item.label);
-          setTitles(extractedTitles.slice(0, 6));
-        } else {
-          console.error("Unexpected data format:", data);
-        }
+        const labelsArray = data[1]?.Rapido?.data;
+        const extractedTitles = Array.isArray(labelsArray)
+          ? labelsArray.map((item) => item.label).slice(0, 6)
+          : [];
+
+        setTitles(extractedTitles);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
-
     fetchTitles();
   }, []);
 
   const handleTabClick = (index: number): void => {
-    setActiveTabs((prevActiveTabs) => {
-      if (prevActiveTabs.includes(index)) {
-        return prevActiveTabs.filter((tab) => tab !== index);
-      } else {
-        return [...prevActiveTabs, index];
-      }
-    });
+    setActiveTabs((prevActiveTabs) =>
+      prevActiveTabs.includes(index)
+        ? prevActiveTabs.filter((tab) => tab !== index)
+        : [...prevActiveTabs, index]
+    );
   };
 
   return (
@@ -96,9 +83,7 @@ const Royal: React.FC = () => {
           {["1st", "2nd", "3rd", "4th", "5th"].map((label, index) => (
             <div
               key={index}
-              className={`${styles.tab} ${
-                activeTabs.includes(index) ? styles.active : ""
-              }`}
+              className={`${styles.tab} ${activeTabs.includes(index) ? styles.active : ""}`}
               onClick={() => handleTabClick(index)}
             >
               {label}
