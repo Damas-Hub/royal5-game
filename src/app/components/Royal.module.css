@@ -30,11 +30,12 @@
   border-radius: 5px;
   font-size: small;
   font-weight: bold;
-  padding-left: 10px;
+   
+ 
 }
 
 .active {
-  background-color: #f57d1f;
+  background-color: #ff6200;
   color: white;
 }
 
@@ -68,7 +69,7 @@
 
 .dataComponent:hover {
   background-color: #ffc374;
-  border: 1px solid orange;
+  border: 1px solid #ff6200;
   cursor: pointer;
 }
 
@@ -83,7 +84,7 @@
 .number {
   font-size: 20px;
   margin-right: 95px;
-  color: rgb(228, 149, 2);
+  color: #ed722f;
   font-weight: 700;
 }
 
