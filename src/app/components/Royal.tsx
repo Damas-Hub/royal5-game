@@ -1,12 +1,14 @@
-"use client"; // This directive enables client-side rendering for this component
+"use client";
 
-import React, { useState } from 'react';
-import styles from './Royal.module.css';
+import React, { useState } from "react";
+import styles from "./Royal.module.css";
 
 const DataComponent: React.FC<{ title: string }> = ({ title }) => {
-  const [apiData, setApiData] = useState<string>('');
+  const [apiData, setApiData] = useState<string>("");
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+  const handleInputChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ): void => {
     setApiData(event.target.value); // Update state with input value
   };
 
@@ -26,15 +28,13 @@ const DataComponent: React.FC<{ title: string }> = ({ title }) => {
 };
 
 const Royal: React.FC = () => {
-  const [activeTabs, setActiveTabs] = useState<number[]>([]); // Array for active tabs
+  const [activeTabs, setActiveTabs] = useState<number[]>([]);
 
   const handleTabClick = (index: number): void => {
-    setActiveTabs(prevActiveTabs => {
+    setActiveTabs((prevActiveTabs) => {
       if (prevActiveTabs.includes(index)) {
-        // If tab is already active, remove it
-        return prevActiveTabs.filter(tab => tab !== index);
+        return prevActiveTabs.filter((tab) => tab !== index);
       } else {
-        // Otherwise, add it
         return [...prevActiveTabs, index];
       }
     });
@@ -44,10 +44,12 @@ const Royal: React.FC = () => {
     <div className={styles.main}>
       <div className={styles.first}>
         <div className={styles.tabsContainer}>
-          {['1st', '2nd', '3rd', '4th', '5th'].map((label, index) => (
+          {["1st", "2nd", "3rd", "4th", "5th"].map((label, index) => (
             <div
               key={index}
-              className={`${styles.tab} ${activeTabs.includes(index) ? styles.active : ''}`}
+              className={`${styles.tab} ${
+                activeTabs.includes(index) ? styles.active : ""
+              }`}
               onClick={() => handleTabClick(index)}
             >
               {label}
@@ -64,9 +66,10 @@ const Royal: React.FC = () => {
           <DataComponent title="Prime" />
           <DataComponent title="Composite" />
         </div>
+        <hr className={styles.hr} />
       </div>
     </div>
   );
-}
+};
 
 export default Royal;
