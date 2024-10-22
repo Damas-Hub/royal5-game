@@ -46,10 +46,13 @@ const Royal: React.FC = () => {
   useEffect(() => {
     (async () => {
       try {
-        const response = await fetch("http://192.168.1.51/task/apis/twosides.php?lottery_type_id=1");
+        const response = await fetch(
+          "http://192.168.1.51/task/apis/twosides.php?lottery_type_id=1"
+        );
         const data: ApiResponse = await response.json();
         console.log("Fetched data:", JSON.stringify(data, null, 2));
-        const labels = data[1]?.Rapido?.data?.map((item) => item.label).slice(0, 6) || [];
+        const labels =
+          data[1]?.Rapido?.data?.map((item) => item.label).slice(0, 6) || [];
         setTitles(labels);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -58,7 +61,11 @@ const Royal: React.FC = () => {
   }, []);
 
   const handleTabClick = (index: number) =>
-    setActiveTabs((prev) => (prev.includes(index) ? prev.filter((tab) => tab !== index) : [...prev, index]));
+    setActiveTabs((prev) =>
+      prev.includes(index)
+        ? prev.filter((tab) => tab !== index)
+        : [...prev, index]
+    );
 
   return (
     <div className={styles.main}>
@@ -67,7 +74,9 @@ const Royal: React.FC = () => {
           {["1st", "2nd", "3rd", "4th", "5th"].map((label, index) => (
             <div
               key={index}
-              className={`${styles.tab} ${activeTabs.includes(index) ? styles.active : ""}`}
+              className={`${styles.tab} ${
+                activeTabs.includes(index) ? styles.active : ""
+              }`}
               onClick={() => handleTabClick(index)}
             >
               {label}
