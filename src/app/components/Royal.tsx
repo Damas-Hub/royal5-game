@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import styles from "./Royal.module.css";
+import Round from './Round';
 
 interface DataItem {
   label: string;
@@ -92,6 +93,7 @@ const Royal: React.FC = () => {
         </div>
         <hr className={styles.hr} />
       </div>
+      <Round />
     </div>
   );
 };

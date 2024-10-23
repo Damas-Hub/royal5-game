@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './Round.module'
+import styles from './Round.module.css'
 
 const Round = () => {
   return (
