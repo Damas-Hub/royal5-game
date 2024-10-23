@@ -53,7 +53,7 @@ const Royal: React.FC = () => {
   const [titlesAndOdds, setTitlesAndOdds] = useState<DataItem[]>([]);
   const [selectedIndices, setSelectedIndices] = useState<Set<number>>(
     new Set()
-  ); // Use a Set for multiple selections
+  ); 
 
   useEffect(() => {
     (async () => {
