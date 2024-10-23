@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import styles from "./Royal.module.css";
-import Round from './Round';
+import Round from "./Round";
 
 interface DataItem {
   label: string;
@@ -22,7 +22,12 @@ interface ApiResponse {
   };
 }
 
-const DataComponent: React.FC<{ title: string; odds: string; isSelected: boolean; onClick: () => void }> = ({ title, odds, isSelected, onClick }) => {
+const DataComponent: React.FC<{
+  title: string;
+  odds: string;
+  isSelected: boolean;
+  onClick: () => void;
+}> = ({ title, odds, isSelected, onClick }) => {
   const [apiData, setApiData] = useState("");
 
   return (
@@ -46,7 +51,9 @@ const DataComponent: React.FC<{ title: string; odds: string; isSelected: boolean
 const Royal: React.FC = () => {
   const [activeTabs, setActiveTabs] = useState<number[]>([]);
   const [titlesAndOdds, setTitlesAndOdds] = useState<DataItem[]>([]);
-  const [selectedIndices, setSelectedIndices] = useState<Set<number>>(new Set()); // Use a Set for multiple selections
+  const [selectedIndices, setSelectedIndices] = useState<Set<number>>(
+    new Set()
+  ); // Use a Set for multiple selections
 
   useEffect(() => {
     (async () => {
@@ -73,12 +80,12 @@ const Royal: React.FC = () => {
     );
 
   const handleDataComponentClick = (index: number) => {
-    setSelectedIndices(prevIndices => {
+    setSelectedIndices((prevIndices) => {
       const newIndices = new Set(prevIndices);
       if (newIndices.has(index)) {
-        newIndices.delete(index);  
+        newIndices.delete(index);
       } else {
-        newIndices.add(index);  
+        newIndices.add(index);
       }
       return newIndices;
     });
@@ -91,7 +98,9 @@ const Royal: React.FC = () => {
           {["1st", "2nd", "3rd", "4th", "5th"].map((label, index) => (
             <div
               key={index}
-              className={`${styles.tab} ${activeTabs.includes(index) ? styles.active : ""}`}
+              className={`${styles.tab} ${
+                activeTabs.includes(index) ? styles.active : ""
+              }`}
               onClick={() => handleTabClick(index)}
             >
               {label}
@@ -106,8 +115,8 @@ const Royal: React.FC = () => {
               key={index}
               title={item.label}
               odds={item.odds}
-              isSelected={selectedIndices.has(index)} 
-              onClick={() => handleDataComponentClick(index)}  
+              isSelected={selectedIndices.has(index)}
+              onClick={() => handleDataComponentClick(index)}
             />
           ))}
         </div>
