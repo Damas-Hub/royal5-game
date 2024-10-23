@@ -1,9 +1,14 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Round.module.css";
 
-const Round: React.FC = () => {
+interface DataItem {
+  label: string;
+  odds: string;
+}
+
+const Round: React.FC<{ label: string; odds: string }> = ({ label, odds }) => {
   const [isSelected, setIsSelected] = useState(false);
 
   const handleClick = () => {
@@ -17,9 +22,9 @@ const Round: React.FC = () => {
     >
       <div className={styles.horizontalContainer}>
         <button className={styles.roundButton}>
-          <span className={styles.innerNumber}>0</span>
+          <span className={styles.innerNumber}>{label}</span> {/* Corresponding to label */}
         </button>
-        <span className={styles.secondNumber}>0</span>
+        <span className={styles.secondNumber}>{odds}</span> {/* Corresponding to odds */}
         <input
           type="text"
           placeholder="real numbers"
@@ -31,11 +36,37 @@ const Round: React.FC = () => {
 };
 
 const RoundList: React.FC = () => {
-  const rounds = Array.from({ length: 10 }).map((_, index) => (
-    <Round key={index} />
-  ));
+  const [roundData, setRoundData] = useState<DataItem[]>([]);
 
-  return <div className={styles.roundList}>{rounds}</div>;
+  useEffect(() => {
+    (async () => {
+      try {
+        const response = await fetch(
+          "http://192.168.1.51/task/apis/twosides.php?lottery_type_id=1"
+        );
+        const data = await response.json();
+        const fetchedData = data[1]?.Rapido?.data || [];
+
+        // Get the last 10 items (index 6 to 15)
+        const roundsToDisplay = fetchedData.slice(6, 16).map((item: DataItem) => ({
+          label: item.label,
+          odds: item.odds,
+        }));
+
+        setRoundData(roundsToDisplay);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    })();
+  }, []);
+
+  return (
+    <div className={styles.roundList}>
+      {roundData.map((item, index) => (
+        <Round key={index} label={item.label} odds={item.odds} />
+      ))}
+    </div>
+  );
 };
 
 export default RoundList;
