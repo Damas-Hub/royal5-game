@@ -16,13 +16,15 @@
   }
   
   .roundWrapper:hover {
-    border-color: brown;
+    border-color: #ff6200;
+    background-color: #ffe7d9;
   }
   
   .selected {
-    border: 1px solid #1317f3;
-    background-color: red;
+    border: 1px solid #ff6200;
+    background-color: #ffe7d9;
   }
+  
   
   .horizontalContainer {
     display: flex;
@@ -34,9 +36,10 @@
   
   
   
+  
   .roundButton {
-    background-color: brown;
-    border: 2px solid red;
+    background-color: #ffe7d9;
+    border: 3px solid #ff6200;
     border-radius: 50%;
     width: 40px;  
     height: 40px;  
@@ -47,7 +50,7 @@
   
   .innerNumber {
     font-size: 18px;
-    color: yellow;
+    color: black;
     font-weight: bold;
   }
   
