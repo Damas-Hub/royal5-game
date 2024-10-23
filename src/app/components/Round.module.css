@@ -9,10 +9,10 @@
     flex-direction: column;
     align-items: center;
     padding: 10px; 
-    border: 1px solid #ccc;
     border-radius: 5px;
     transition: all 0.3s;
     cursor: pointer;
+    width: 50%;
   }
   
   .roundWrapper:hover {
@@ -20,24 +20,19 @@
   }
   
   .selected {
-    border-color: red;
+    border: 1px solid #1317f3;
     background-color: red;
   }
   
   .horizontalContainer {
     display: flex;
     align-items: center;
-    gap: 40px;
+    justify-content: space-between;  
+    gap: 50px;  
     margin-bottom: 10px;
-    
-     
   }
   
-  .number {
-    font-size: 24px;
-    font-weight: bold;
-    color: black;
-  }
+  
   
   .roundButton {
     background-color: brown;

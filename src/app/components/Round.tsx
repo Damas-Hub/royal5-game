@@ -17,17 +17,17 @@ const Round: React.FC = () => {
     >
         
       <div className={styles.horizontalContainer}>
-        <span className={styles.number}>129</span>
         <button className={styles.roundButton}>
           <span className={styles.innerNumber}>0</span>
         </button>
         <span className={styles.secondNumber}>0</span>
-      </div>
-      <input
+        <input
         type="text"
         placeholder="real numbers"
         className={styles.inputField}
       />
+      </div>
+     
     </div>
   );
 };
