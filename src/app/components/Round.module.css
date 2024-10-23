@@ -63,12 +63,7 @@
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    width: 120px;
+    width: 100px;
   }
   
-  .backgroundWrapper {
-    background-color: #f0f0f0; 
-    padding-right: 50px; 
-    border-radius: 10px; 
-  }
-  
+ 
