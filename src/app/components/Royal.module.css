@@ -67,7 +67,7 @@
 }
 
 .dataComponent:hover {
-  background-color: #ffc374;
+  background-color: #ffe7d9;
   border: 1px solid #ff6200;
 }
 
@@ -101,7 +101,7 @@
   margin-bottom: 30px;
   margin-left: 10px;
   margin-right: 30px;
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 .selected {
