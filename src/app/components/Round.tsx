@@ -15,19 +15,17 @@ const Round: React.FC = () => {
       className={`${styles.roundWrapper} ${isSelected ? styles.selected : ""}`}
       onClick={handleClick}
     >
-        
       <div className={styles.horizontalContainer}>
         <button className={styles.roundButton}>
           <span className={styles.innerNumber}>0</span>
         </button>
         <span className={styles.secondNumber}>0</span>
         <input
-        type="text"
-        placeholder="real numbers"
-        className={styles.inputField}
-      />
+          type="text"
+          placeholder="real numbers"
+          className={styles.inputField}
+        />
       </div>
-     
     </div>
   );
 };
