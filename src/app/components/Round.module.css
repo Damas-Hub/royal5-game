@@ -29,7 +29,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 50px;
+  gap: 40px;
   margin-bottom: 10px;
 }
 
@@ -51,7 +51,7 @@
 }
 
 .secondNumber {
-  font-size: 24px;
+  font-size: 14px;
   font-weight: bold;
   color: #ff6200;
 }

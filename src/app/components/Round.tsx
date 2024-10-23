@@ -22,9 +22,9 @@ const Round: React.FC<{ label: string; odds: string }> = ({ label, odds }) => {
     >
       <div className={styles.horizontalContainer}>
         <button className={styles.roundButton}>
-          <span className={styles.innerNumber}>{label}</span> {/* Corresponding to label */}
+          <span className={styles.innerNumber}>{label}</span> 
         </button>
-        <span className={styles.secondNumber}>{odds}</span> {/* Corresponding to odds */}
+        <span className={styles.secondNumber}>{odds}</span>  
         <input
           type="text"
           placeholder="real numbers"
