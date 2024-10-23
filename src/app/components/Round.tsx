@@ -1,10 +1,42 @@
-import React from 'react'
-import styles from './Round.module.css'
+"use client";
 
-const Round = () => {
+import React, { useState } from "react";
+import styles from "./Round.module.css";
+
+const Round: React.FC = () => {
+  const [isSelected, setIsSelected] = useState(false);
+
+  const handleClick = () => {
+    setIsSelected((prev) => !prev);
+  };
+
   return (
-    <div className={styles.main}>Round</div>
-  )
-}
+    <div
+      className={`${styles.roundWrapper} ${isSelected ? styles.selected : ""}`}
+      onClick={handleClick}
+    >
+      <div className={styles.horizontalContainer}>
+        <span className={styles.number}>129</span>
+        <button className={styles.roundButton}>
+          <span className={styles.innerNumber}>0</span>
+        </button>
+        <span className={styles.secondNumber}>0</span>
+      </div>
+      <input
+        type="text"
+        placeholder="real numbers"
+        className={styles.inputField}
+      />
+    </div>
+  );
+};
 
-export default Round
+const RoundList: React.FC = () => {
+  const rounds = Array.from({ length: 10 }).map((_, index) => (
+    <Round key={index} />
+  ));
+
+  return <div className={styles.roundList}>{rounds}</div>;
+};
+
+export default RoundList;

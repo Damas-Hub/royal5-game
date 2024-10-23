@@ -1,6 +1,69 @@
-.main{
-    margin-top: 20px;
-    height: 100%;
-    width: 100%;
-    background-color: aqua;
-}
+.roundList {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);  
+    gap: 10px;  
+  }
+  
+  .roundWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px; 
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+  
+  .roundWrapper:hover {
+    border-color: brown;
+  }
+  
+  .selected {
+    border-color: red;
+    background-color: red;
+  }
+  
+  .horizontalContainer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .number {
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+  }
+  
+  .roundButton {
+    background-color: brown;
+    border: 2px solid red;
+    border-radius: 50%;
+    width: 40px;  
+    height: 40px;  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .innerNumber {
+    font-size: 18px;
+    color: yellow;
+    font-weight: bold;
+  }
+  
+  .secondNumber {
+    font-size: 24px;
+    font-weight: bold;
+    color: green;
+  }
+  
+  .inputField {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 120px; 
+  }
+  
