@@ -22,13 +22,16 @@ interface ApiResponse {
   };
 }
 
-const DataComponent: React.FC<{ title: string; odds: string }> = ({ title, odds }) => {
+const DataComponent: React.FC<{ title: string; odds: string; isSelected: boolean; onClick: () => void }> = ({ title, odds, isSelected, onClick }) => {
   const [apiData, setApiData] = useState("");
 
   return (
-    <div className={styles.dataComponent}>
+    <div
+      className={`${styles.dataComponent} ${isSelected ? styles.selected : ""}`}
+      onClick={onClick}
+    >
       <div className={styles.title}>{title}</div>
-      <div className={styles.number}>{odds}</div>   
+      <div className={styles.number}>{odds}</div>
       <input
         type="text"
         placeholder="elementary"
@@ -42,7 +45,8 @@ const DataComponent: React.FC<{ title: string; odds: string }> = ({ title, odds 
 
 const Royal: React.FC = () => {
   const [activeTabs, setActiveTabs] = useState<number[]>([]);
-  const [titlesAndOdds, setTitlesAndOdds] = useState<DataItem[]>([]);  // Storing both label and odds
+  const [titlesAndOdds, setTitlesAndOdds] = useState<DataItem[]>([]);
+  const [selectedIndices, setSelectedIndices] = useState<Set<number>>(new Set()); // Use a Set for multiple selections
 
   useEffect(() => {
     (async () => {
@@ -54,7 +58,7 @@ const Royal: React.FC = () => {
         console.log("Fetched data:", JSON.stringify(data, null, 2));
 
         const labelsAndOdds = data[1]?.Rapido?.data?.slice(0, 6) || [];
-        setTitlesAndOdds(labelsAndOdds);  // Storing the label and odds
+        setTitlesAndOdds(labelsAndOdds);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -68,6 +72,18 @@ const Royal: React.FC = () => {
         : [...prev, index]
     );
 
+  const handleDataComponentClick = (index: number) => {
+    setSelectedIndices(prevIndices => {
+      const newIndices = new Set(prevIndices);
+      if (newIndices.has(index)) {
+        newIndices.delete(index);  
+      } else {
+        newIndices.add(index);  
+      }
+      return newIndices;
+    });
+  };
+
   return (
     <div className={styles.main}>
       <div className={styles.first}>
@@ -75,9 +91,7 @@ const Royal: React.FC = () => {
           {["1st", "2nd", "3rd", "4th", "5th"].map((label, index) => (
             <div
               key={index}
-              className={`${styles.tab} ${
-                activeTabs.includes(index) ? styles.active : ""
-              }`}
+              className={`${styles.tab} ${activeTabs.includes(index) ? styles.active : ""}`}
               onClick={() => handleTabClick(index)}
             >
               {label}
@@ -88,7 +102,13 @@ const Royal: React.FC = () => {
       <div className={styles.second}>
         <div className={styles.componentsContainer}>
           {titlesAndOdds.map((item, index) => (
-            <DataComponent key={index} title={item.label} odds={item.odds} />  // Passing odds
+            <DataComponent
+              key={index}
+              title={item.label}
+              odds={item.odds}
+              isSelected={selectedIndices.has(index)} 
+              onClick={() => handleDataComponentClick(index)}  
+            />
           ))}
         </div>
         <hr className={styles.hr} />
