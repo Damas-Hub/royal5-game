@@ -120,7 +120,6 @@ const Royal: React.FC = () => {
             />
           ))}
         </div>
-        
       </div>
       <hr className={styles.hr} />
       <Round />
