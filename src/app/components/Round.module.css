@@ -1,9 +1,10 @@
 .roundList {
     display: flex;                      
     flex-wrap: wrap;                   
-    gap: 10px;                         
+    gap: 20px;                         
     justify-content: flex-start;  
-    width: 60%;     
+    width: 60%; 
+    margin-left: 30px;    
   }
   
   .roundWrapper {
