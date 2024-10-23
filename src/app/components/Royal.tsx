@@ -18,17 +18,17 @@ interface ApiResponse {
     Rapido: {
       data: DataItem[];
     };
-    all_kinds: object;  
+    all_kinds: object;
   };
 }
 
-const DataComponent: React.FC<{ title: string }> = ({ title }) => {
+const DataComponent: React.FC<{ title: string; odds: string }> = ({ title, odds }) => {
   const [apiData, setApiData] = useState("");
 
   return (
     <div className={styles.dataComponent}>
       <div className={styles.title}>{title}</div>
-      <div className={styles.number}>0</div>
+      <div className={styles.number}>{odds}</div>   
       <input
         type="text"
         placeholder="elementary"
@@ -42,7 +42,7 @@ const DataComponent: React.FC<{ title: string }> = ({ title }) => {
 
 const Royal: React.FC = () => {
   const [activeTabs, setActiveTabs] = useState<number[]>([]);
-  const [titles, setTitles] = useState<string[]>([]);
+  const [titlesAndOdds, setTitlesAndOdds] = useState<DataItem[]>([]);  // Storing both label and odds
 
   useEffect(() => {
     (async () => {
@@ -52,9 +52,9 @@ const Royal: React.FC = () => {
         );
         const data: ApiResponse = await response.json();
         console.log("Fetched data:", JSON.stringify(data, null, 2));
-        const labels =
-          data[1]?.Rapido?.data?.map((item) => item.label).slice(0, 6) || [];
-        setTitles(labels);
+
+        const labelsAndOdds = data[1]?.Rapido?.data?.slice(0, 6) || [];
+        setTitlesAndOdds(labelsAndOdds);  // Storing the label and odds
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -87,8 +87,8 @@ const Royal: React.FC = () => {
       </div>
       <div className={styles.second}>
         <div className={styles.componentsContainer}>
-          {titles.map((title, index) => (
-            <DataComponent key={index} title={title} />
+          {titlesAndOdds.map((item, index) => (
+            <DataComponent key={index} title={item.label} odds={item.odds} />  // Passing odds
           ))}
         </div>
         <hr className={styles.hr} />
