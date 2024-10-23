@@ -29,8 +29,8 @@
   .horizontalContainer {
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Keep the spacing between items inside */
-    gap: 20px; /* This can be adjusted as needed */
+    justify-content: space-between; 
+    gap: 20px;  
     margin-bottom: 10px;
   }
   
@@ -64,10 +64,5 @@
     width: 120px;
   }
   
-  /* New CSS for the background wrapper */
-  .backgroundWrapper {
-    background-color: #f0f0f0; /* Choose your background color */
-    padding-right: 50px; /* Adjust padding as needed */
-    border-radius: 10px; /* Optional: Add rounded corners */
-  }
+ 
   

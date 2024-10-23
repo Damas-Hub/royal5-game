@@ -60,13 +60,11 @@ const RoundList: React.FC = () => {
   }, []);
 
   return (
-    <div className={styles.backgroundWrapper}> {/* New wrapper added */}
     <div className={styles.roundList}>
       {roundData.map((item, index) => (
         <Round key={index} label={item.label} odds={item.odds} />
       ))}
     </div>
-  </div>
   );
 };
 
