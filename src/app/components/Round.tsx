@@ -46,8 +46,6 @@ const RoundList: React.FC = () => {
         );
         const data = await response.json();
         const fetchedData = data[1]?.Rapido?.data || [];
-
-        // Get the last 10 items (index 6 to 15)
         const roundsToDisplay = fetchedData.slice(6, 16).map((item: DataItem) => ({
           label: item.label,
           odds: item.odds,
