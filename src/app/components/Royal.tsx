@@ -65,7 +65,7 @@ const Royal  = () => {
         const data: ApiResponse = await response.json();
         console.log("Fetched data:", JSON.stringify(data, null, 2));
 
-        const labelsAndOdds = data[1]?.Rapido?.data?.slice(0, 6) || ['1'];
+        const labelsAndOdds = data[1]?.Rapido?.data?.slice(0, 6) || [];
         setTitlesAndOdds(labelsAndOdds);
       } catch (error) {
         console.error("Error fetching data:", error);
