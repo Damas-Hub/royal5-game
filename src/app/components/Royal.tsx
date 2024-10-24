@@ -71,7 +71,7 @@ const Royal  = () => {
         console.error("Error fetching data:", error);
       }
     })();
-  }, [1]);
+  }, []);
 
   const handleTabClick = (index: number) =>
     setActiveTabs((prev) =>
