@@ -73,11 +73,11 @@ const Royal  = () => {
     })();
   }, []);
 
-  const handleTabClick = (item: number) =>
+  const handleTabClick = (index: number) =>
     setActiveTabs((prev) =>
-      prev.includes(item)
-        ? prev.filter((tab) => tab !== item)
-        : [...prev, item]
+      prev.includes(index)
+        ? prev.filter((tab) => tab !== index)
+        : [...prev, index]
     );
 
   const handleDataComponentClick = (index: number) => {
