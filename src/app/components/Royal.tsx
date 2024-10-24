@@ -48,7 +48,7 @@ const DataComponent: React.FC<{
   );
 };
 
-const Royal: React.FC = () => {
+const Royal  = () => {
    
   const [activeTabs, setActiveTabs] = useState<number[]>([0]);
   const [titlesAndOdds, setTitlesAndOdds] = useState<DataItem[]>([]);
