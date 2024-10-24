@@ -49,8 +49,8 @@ const DataComponent: React.FC<{
 };
 
 const Royal: React.FC = () => {
-  // Set initial active tab to "1st" (index 0)
-  const [activeTabs, setActiveTabs] = useState<number[]>([0]);
+   
+  const [activeTabs, setActiveTabs] = useState<number[]>([]);
   const [titlesAndOdds, setTitlesAndOdds] = useState<DataItem[]>([]);
   const [selectedIndices, setSelectedIndices] = useState<Set<number>>(
     new Set()
