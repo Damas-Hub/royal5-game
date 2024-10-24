@@ -72,7 +72,7 @@ const Royal  = () => {
       }
     })();
   }, []);
-
+ 
   const handleTabClick = (index: number) =>
     //updates the state of activeTabs
     setActiveTabs((prev) =>
@@ -80,7 +80,7 @@ const Royal  = () => {
       prev.includes(index)
       // Remove the clicked tab's index from the activeTabs array by filtering out the index
         ? prev.filter((tab) => tab !== index)
-        //index is added to this array, marking the tab as active.
+        //index is added to the array, marking the tab as active.
         : [...prev, index]
     );
 
